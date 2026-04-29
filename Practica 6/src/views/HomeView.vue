@@ -16,7 +16,7 @@
 
       <div class="user-area">
         <span class="user-email">KarliM@gmail.com</span>
-        <button class="logout-btn">↪ Logout</button>
+        <button @click="cerrarSesion" class="logout-btn">↪ Cerrar Sesión</button>
       </div>
     </header>
 
@@ -50,6 +50,9 @@
 import { ref, onMounted } from 'vue'
 import TopMovies from '../components/TopMovies.vue'
 import MovieCategory from '../components/MovieCategory.vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter();
 
 // Variables reactivas
 const topMovies = ref([])
@@ -109,6 +112,11 @@ const obtenerPeliculas = async()=>{
   }
 
  
+}
+
+const cerrarSesion = ()=>{
+   localStorage.removeItem('autenticado')
+  router.push("/login")
 }
 
   onMounted(()=>{
